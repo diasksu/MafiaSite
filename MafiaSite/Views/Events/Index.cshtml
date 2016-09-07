@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MafiaDomain.Models.Event>
+@if (Model != null)
+{
+    <div class="container">
+        <div class="row">
+            @foreach (MafiaDomain.Models.Event evt in Model)
+            {
+                <div class="col-xs-6 col-lg-3">                    
+                    <img width="262" src="@evt.Photo"
+                         class="thumbnail">
+                    <h2>@evt.Name</h2>
+                    <p>@evt.Description</p>
+                    <p>@evt.Address</p>
+                    <p><a class="btn btn-default" href="~/Events/Item/@evt.EventId.ToString()" role="button">Подробности &raquo;</a></p>
+                </div>
+            }
+        </div>
+    </div>
+}

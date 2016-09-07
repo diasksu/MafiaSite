@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Page.Title</title>
+        @RenderSection("head", required: false)
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/bootstrap")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#"></a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="/">Главная</a></li>
+                                <li><a href="~/Home/Static/News">Новости</a></li>
+                                <li><a href="~/Home/Static/Bands">Банды</a></li>
+                                <li><a href="~/Events">Мероприятия</a></li>
+                                <li class="dropdown">
+                                    <a href="/Rules"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Правила<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="~/Home/Static/GameInfo">Описание игры</a></li>
+                                        <li><a href="~/Home/Static/Roles">Роли</a></li>
+                                        <li><a href="~/Home/Static/Tactics">Тактика</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="~/Home/Static/Media">Медиа</a></li>
+                                <li><a href="~/Home/Static/Shop">Магазин</a></li>
+                                <li><a href="~/Home/Static/About_us">О нас</a></li>
+                                <li><a href="~/Home/Static/Partys">Корпоративы</a></li>
+                                <li><a href="~/Home/Static/Login">Вход</a></li>                           
+                            </ul>
+                        </div>
+                    </div>       
+                </div>         
+            </nav>
+            <div class="container">
+                <div class="jumbotron" id="header-jumbotron">
+                    <h2>@ViewBag.Header</h2>
+                </div>
+            </div>
+        </header>
+        @RenderBody()      
+    </body>
+</html>

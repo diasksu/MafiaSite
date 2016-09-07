@@ -1,0 +1,73 @@
+﻿@model MafiaDomain.Models.StaticPage
+@section head
+{
+    @Scripts.Render("~/bundles/tinymce")
+}
+
+<div class="container">
+    <div id="editor">
+        @Html.Raw(@Model.Content)
+    </div>
+    <br />
+    <input type="button" id="buttonHide" value="Спрятать редактор" />
+    <input type="button" id="buttonShow" value="Показать редактор" />
+    <input type="submit" id="buttonSave" value="Сохранить" />
+</div>
+
+<script type="text/javascript">    
+    $(document).ready(function () {
+        tinymce.init({
+            theme: "modern",
+            selector: "#editor",
+            plugins: [
+             "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+             "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+            setup: function (ed) {
+                ed.on('init', function (args) {
+
+                });
+            }
+        });
+    });
+    $("#buttonShow").hide();
+    $(function () {
+        $("#buttonHide").click(function () {
+            tinymce.editors['editor'].hide();
+            $("#buttonShow").show();
+            $("#buttonHide").hide();
+        });
+    });
+    $(function () {
+        $("#buttonShow").click(function () {
+            tinymce.editors['editor'].show();
+            $("#buttonShow").hide();
+            $("#buttonHide").show();
+        });
+    });
+    $(function ()
+    {
+        $("#buttonSave").click(function () {
+            var htmlCont = tinymce.editors['editor'].getContent();
+            htmlCont = $('<div/>').text(htmlCont).html();
+            $.ajax(
+              {
+                  type: 'POST',
+                  url: "/Home/Save/@Model.Name",
+                  data:
+                  {
+                      file: htmlCont
+                  },
+                  success: function (responseData, textStatus, jqXHR)
+                  {
+                      location.reload();
+                  },
+                  error: function (responseData, textStatus, errorThrown)
+                  {
+                      alert(responseData);
+                  }
+              })
+        });
+    });
+</script>

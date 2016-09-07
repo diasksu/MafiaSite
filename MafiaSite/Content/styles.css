@@ -1,0 +1,26 @@
+﻿body {
+}
+
+#header-jumbotron{
+    background-color: #6f5499;
+}
+#navbar {
+  
+}
+
+#header-jumbotron h2{
+    margin-left: 0px;
+    color: #fff;
+    margin-top: 50px;
+}
+
+#dropZone.hover
+{
+    border-color: #aaa;
+    background-color: #ddd;
+}
+#dropZone.error
+{
+    border-color: #f00;
+    background-color: #faa;
+} 

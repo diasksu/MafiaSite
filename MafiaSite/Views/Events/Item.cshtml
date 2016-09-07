@@ -1,0 +1,33 @@
+﻿@model MafiaDomain.Models.Event
+<div class="container">
+    <div class="jumbotron">
+        <h3>@Model.Name</h3>
+        <p>Состоится: @Model.Date.ToString()</p>
+        <p>Адрес: @Model.Address</p>
+        <p>@Model.Description</p>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/dropfile")
+
+
+<div class="container">
+    <div id="dropZone" class="jumbotron" style="overflow:auto;">
+        <input id="eventId" type="hidden" value="@Model.EventId" />
+        <h2>Фотоальбом</h2>
+        <h3>(Для загрузки изображений, перетащите файлы (по одному) на эту область)</h3>
+        <div style="overflow:auto;">
+            @if (Model.EventPhotos != null)
+            {
+                int i = 0;
+                foreach (MafiaDomain.Models.EventPhoto ph in Model.EventPhotos)
+                {
+                    i++;
+                    <img width="235" src="@Html.Name(ph.Path)"
+                         class="thumbnail" style="float:left; margin-right: 20px;" />   
+                    if(i%4==0) { @Html.Raw("</div><div style=\"overflow: auto;\">"); }
+                }
+            }
+        </div>      
+    </div>
+</div>
